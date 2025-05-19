@@ -1,5 +1,5 @@
 use anchor_lang::prelude::*;
-use anchor_spl::token::{self, Mint, Token, TokenAccount, Transfer};
+use anchor_spl::token::{self, Token, TokenAccount, Transfer};
 
 declare_id!("9WVXrk3G4XLiKtaqCpViTgNuUodMLaGsqnGqhzPqxrKC");
 
@@ -37,7 +37,7 @@ pub mod raffle_contract {
 
         // Check if entry fee is correct
         require!(
-            ctx.accounts.participants.lamports >= raffle.entry_fee,
+            ctx.accounts.participant.lamports() >= raffle.entry_fee,
             RaffleError::InsufficientEntryFee
         );
 
@@ -70,7 +70,7 @@ pub mod raffle_contract {
         let clock = Clock::get()?;
         let seed = clock.slot.to_le_bytes();
         let winner_index = (seed[0] as usize) % raffle.entries.len();
-        let winner = raffle.entries[winner_index];
+        let _winner = raffle.entries[winner_index];
 
         // Transfer NFT to winner
         let transfer_ctx = CpiContext::new(
