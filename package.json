@@ -6,7 +6,7 @@
         "deploy": "sudo anchor deploy"
     },
     "dependencies": {
-        "@coral-xyz/anchor": "0.30.1",
+        "@coral-xyz/anchor": "0.31.1",
         "@solana/spl-token": "^0.3.8",
         "@solana/web3.js": "^1.87.6",
         "chai": "^4.3.7"

@@ -189,7 +189,7 @@ describe("raffle-contract", () => {
         raffle: raffleAccount,
         creator: creator.publicKey,
         nftTokenAccount: creatorTokenAccount,
-        winnerTokenAccount: participant1TokenAccount, // This will be the winner's account
+        winnerTokenAccount: participant1TokenAccount,
         tokenProgram: TOKEN_PROGRAM_ID,
       })
       .signers([creator])
