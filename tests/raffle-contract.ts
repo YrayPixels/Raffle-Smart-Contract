@@ -95,7 +95,7 @@ describe("raffle-contract", () => {
 
     await program.methods
       .initializeRaffle(nftMint, entryFee, maxEntries)
-      .accounts({
+      .accountsPartial({
         raffle: raffleAccount,
         creator: creator.publicKey,
         systemProgram: SystemProgram.programId,
@@ -116,7 +116,7 @@ describe("raffle-contract", () => {
     // First participant enters
     await program.methods
       .enterRaffle()
-      .accounts({
+      .accountsPartial({
         raffle: raffleAccount,
         participant: participant1.publicKey,
         creator: creator.publicKey,
@@ -132,7 +132,7 @@ describe("raffle-contract", () => {
     // Second participant enters
     await program.methods
       .enterRaffle()
-      .accounts({
+      .accountsPartial({
         raffle: raffleAccount,
         participant: participant2.publicKey,
         creator: creator.publicKey,
@@ -150,7 +150,7 @@ describe("raffle-contract", () => {
     // Third participant enters
     await program.methods
       .enterRaffle()
-      .accounts({
+      .accountsPartial({
         raffle: raffleAccount,
         participant: participant3.publicKey,
         creator: creator.publicKey,
@@ -163,7 +163,7 @@ describe("raffle-contract", () => {
     try {
       await program.methods
         .enterRaffle()
-        .accounts({
+        .accountsPartial({
           raffle: raffleAccount,
           participant: Keypair.generate().publicKey,
           creator: creator.publicKey,
@@ -185,7 +185,7 @@ describe("raffle-contract", () => {
 
     await program.methods
       .pickWinner()
-      .accounts({
+      .accountsPartial({
         raffle: raffleAccount,
         creator: creator.publicKey,
         nftTokenAccount: creatorTokenAccount,
@@ -218,7 +218,7 @@ describe("raffle-contract", () => {
     try {
       await program.methods
         .enterRaffle()
-        .accounts({
+        .accountsPartial({
           raffle: raffleAccount,
           participant: Keypair.generate().publicKey,
           creator: creator.publicKey,
@@ -241,7 +241,7 @@ describe("raffle-contract", () => {
 
     await program.methods
       .initializeRaffle(nftMint, entryFee, maxEntries)
-      .accounts({
+      .accountsPartial({
         raffle: newRaffle,
         creator: creator.publicKey,
         systemProgram: SystemProgram.programId,
@@ -251,7 +251,7 @@ describe("raffle-contract", () => {
 
     await program.methods
       .closeRaffle()
-      .accounts({
+      .accountsPartial({
         raffle: newRaffle,
         creator: creator.publicKey,
       })
@@ -266,7 +266,7 @@ describe("raffle-contract", () => {
     try {
       await program.methods
         .closeRaffle()
-        .accounts({
+        .accountsPartial({
           raffle: raffleAccount,
           creator: participant1.publicKey,
         })
