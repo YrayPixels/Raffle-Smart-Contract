@@ -3,7 +3,10 @@
         "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
         "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
         "build": "sudo anchor build",
-        "deploy": "sudo anchor deploy"
+        "deploy-devnet": "sudo anchor deploy --provider.cluster devnet",
+        "deploy-localnet": "sudo anchor deploy --provider.cluster localnet",
+        "deploy": "sudo anchor deploy",
+        "test": "sudo anchor test --skip-deploy"
     },
     "dependencies": {
         "@coral-xyz/anchor": "0.31.1",

@@ -76,8 +76,8 @@ pub mod raffle_contract {
         let transfer_ctx = CpiContext::new(
             ctx.accounts.token_program.to_account_info(),
             Transfer {
-                from: ctx.accounts.nftTokenAccount.to_account_info(),
-                to: ctx.accounts.winnerTokenAccount.to_account_info(),
+                from: ctx.accounts.nft_token_account.to_account_info(),
+                to: ctx.accounts.winner_token_account.to_account_info(),
                 authority: ctx.accounts.creator.to_account_info(),
             },
         );
@@ -122,7 +122,7 @@ pub struct InitializeRaffle<'info> {
     pub raffle: Account<'info, Raffle>,
     #[account(mut)]
     pub creator: Signer<'info>,
-    pub systemProgram: Program<'info, System>,
+    pub system_program: Program<'info, System>,
 }
 
 #[derive(Accounts)]
@@ -134,7 +134,7 @@ pub struct EnterRaffle<'info> {
     /// CHECK: This is the creator's account that receives the entry fee. We verify the correct creator through the raffle account.
     #[account(mut)]
     pub creator: AccountInfo<'info>,
-    pub systemProgram: Program<'info, System>,
+    pub system_program: Program<'info, System>,
 }
 
 #[derive(Accounts)]
@@ -145,10 +145,10 @@ pub struct PickWinner<'info> {
     #[account(mut)]
     pub creator: Signer<'info>,
     #[account(mut)]
-    pub nftTokenAccount: Account<'info, TokenAccount>,
+    pub nft_token_account: Account<'info, TokenAccount>,
     #[account(mut)]
-    pub winnerTokenAccount: Account<'info, TokenAccount>,
-    pub tokenProgram: Program<'info, Token>,
+    pub winner_token_account: Account<'info, TokenAccount>,
+    pub token_program: Program<'info, Token>,
 }
 
 #[derive(Accounts)]
